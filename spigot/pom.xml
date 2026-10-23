@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>net.hyze</groupId>
+        <artifactId>core</artifactId>
+        <version>0.1</version>
+    </parent>
+
+    <artifactId>core-spigot</artifactId>
+    <name>Core-Spigot</name>
+
+    <repositories>
+        <repository>
+            <id>dmulloy2-repo</id>
+            <url>https://repo.dmulloy2.net/repository/public/</url>
+        </repository>
+        <repository>
+            <id>citizens-repo</id>
+            <url>https://maven.citizensnpcs.co/repo</url>
+        </repository>
+        <repository>
+            <id>inventive-repo</id>
+            <url>https://repo.inventivetalent.org/content/groups/public/</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>dev.utils</groupId>
+            <artifactId>utils-bukkit</artifactId>
+            <scope>compile</scope>
+        </dependency>
+
+        <!--Core Shared-->
+        <dependency>
+            <groupId>net.hyze</groupId>
+            <artifactId>core-shared</artifactId>
+            <version>${project.parent.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!--Spigot API-->
+        <dependency>
+            <groupId>app.ashcon</groupId>
+            <artifactId>sportpaper-api</artifactId>
+            <version>1.8.8-R0.1-SNAPSHOT</version>
+            <scope>system</scope>
+            <systemPath>C:/Hyze/output/sportpaper-api-1.8.8-R0.1-SNAPSHOT.jar</systemPath>
+        </dependency>
+
+        <!--Craftbukkit-->
+        <dependency>
+            <groupId>app.ashcon</groupId>
+            <artifactId>sportpaper</artifactId>
+            <version>1.8.8-R0.1-SNAPSHOT</version>
+            <scope>system</scope>
+            <systemPath>C:/Hyze/output/paper.jar</systemPath>
+        </dependency>
+
+        <!--ProtocolLib-API-->
+        <dependency>
+            <groupId>com.comphenix.protocol</groupId>
+            <artifactId>ProtocolLib</artifactId>
+            <scope>system</scope>
+            <systemPath>C:/Hyze/output/ProtocolLib.jar</systemPath>
+        </dependency>
+
+        <!--PacketWrapper-->
+        <dependency>
+            <groupId>com.comphenix.packetwrapper</groupId>
+            <artifactId>PacketWrapper</artifactId>
+            <version>1.13-R0.1-SNAPSHOT</version>
+            <scope>system</scope>
+            <systemPath>C:/Hyze/output/PacketWrapper.jar</systemPath>
+        </dependency>
+
+        <!--NoCheatPlus-->
+        <dependency>
+            <groupId>fr.neatmonster</groupId>
+            <artifactId>nocheatplus</artifactId>
+            <version>3.16.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.citizensnpcs</groupId>
+            <artifactId>citizensapi</artifactId>
+            <version>2.0.30-SNAPSHOT</version>
+            <type>jar</type>
+            <scope>system</scope>
+            <systemPath>C:/Hyze/output/Citizens.jar</systemPath>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.2.1</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+
+                        <configuration>
+                            <artifactSet>
+                                <includes>
+                                    <include>dev.utils:utils-bukkit</include>
+                                    <include>net.hyze:core-shared</include>
+                                    <include>com.comphenix.packetwrapper:PacketWrapper</include>
+                                </includes>
+                            </artifactSet>
+
+                            <filters>
+                                <filter>
+                                    <artifact>*:*</artifact>
+                                    <excludes>
+                                        <exclude>net/md_5/**</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

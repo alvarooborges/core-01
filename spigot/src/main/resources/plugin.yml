@@ -1,0 +1,5 @@
+name: Core-Spigot
+main: net.hyze.core.spigot.CoreSpigotPlugin
+version: 1.0
+depend: [ProtocolLib, Citizens]
+load: STARTUP
